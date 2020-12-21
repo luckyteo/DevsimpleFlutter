@@ -2,6 +2,7 @@ import 'package:devsimple_flutter/redux/actions/index.dart';
 import 'package:devsimple_flutter/redux/models/cart.dart';
 import 'package:devsimple_flutter/redux/models/products.dart';
 import 'package:devsimple_flutter/redux/reducers/selectors.dart';
+import 'package:devsimple_flutter/redux/sagas/saga_movie.dart';
 import 'package:devsimple_flutter/services/index.dart';
 import 'package:redux_saga/redux_saga.dart';
 
@@ -10,7 +11,8 @@ rootSaga() sync* {
     #t1: Fork(getAllProducts),
     #t2: Fork(watchGetProducts),
     #t3: Fork(trigGetProducts),
-    #t4: Fork(watchCheckout)
+    #t4: Fork(watchCheckout),
+    #t5: Fork(watchSagaMovie)
   });
 }
 
