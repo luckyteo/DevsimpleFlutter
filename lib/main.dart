@@ -12,10 +12,12 @@ import 'i18n/app_language.dart';
 import 'i18n/app_localizations.dart';
 
 void main() async {
-  // AppLanguage appLanguage = AppLanguage();
-  // await appLanguage.fetchLocale();
+  WidgetsFlutterBinding.ensureInitialized();
+  AppLanguage appLanguage = AppLanguage();
+  await appLanguage.fetchLocale();
   runApp(MyApp(
     store: configureStore(),
+    appLanguage: appLanguage,
   ));
 
   /**/
@@ -23,8 +25,9 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final Store store;
+  final AppLanguage appLanguage;
 
-  MyApp({Key key, this.store}) : super(key: key);
+  MyApp({Key key, this.store, this.appLanguage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
         store: store,
         child: MultiProvider(
           providers: [
-            ChangeNotifierProvider<AppLanguage>(create: (_) => AppLanguage()),
+            ChangeNotifierProvider<AppLanguage>(create: (_) => appLanguage),
           ],
           child: Consumer<AppLanguage>(
             builder: (context, model, child) {
